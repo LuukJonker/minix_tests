@@ -4,35 +4,36 @@ import os
 import pytest
 
 program_path = os.path.abspath(".") + "/mfstool.py"
+test_folder = "minix_tests"
 
 ls_working = False
 
 class TestLs():
-    def test_ls_1(self):
+    def test_ls_single_block_14_char(self):
         global ls_working
-        res = ls("tests/single_block_ls.img") == results.single_block_ls_result
+        res = ls(test_folder + "/single_block_ls.img") == results.single_block_ls_result
         if res:
             ls_working = True
 
         assert res
 
-    def test_ls_2(self):
-        assert ls("tests/multiple_block_ls.img") == results.multiple_block_ls_result
+    def test_ls_multiple_blocks_14_char(self):
+        assert ls(test_folder + "/multiple_block_ls.img") == results.multiple_block_ls_result
 
-    def test_ls_3(self):
-        assert ls("tests/single_block_30_ls.img") == results.single_block_ls_result
+    def test_ls_single_block_30_char(self):
+        assert ls(test_folder + "/single_block_30_ls.img") == results.single_block_ls_result
 
-    def test_ls_4(self):
-        assert ls("tests/multiple_block_30_ls.img") == results.multiple_block_30_ls_result
+    def test_ls_multiple_blocks_30_char(self):
+        assert ls(test_folder + "/multiple_block_30_ls.img") == results.multiple_block_30_ls_result
 
 class TestCat():
-    def test_cat_1(self):
-        assert cat("tests/single_block_cat.img", 'yessir.txt') == results.single_block_cat_result
-        assert cat("tests/single_block_cat.img", 'diro/sub.txt') == results.single_block_sub_cat_result
+    def test_cat_single_block(self):
+        assert cat(test_folder + "/single_block_cat.img", 'yessir.txt') == results.single_block_cat_result
+        assert cat(test_folder + "/single_block_cat.img", 'diro/sub.txt') == results.single_block_sub_cat_result
 
-    def test_cat_2(self):
-        assert cat("tests/multiple_blocks_cat.img", 'bee_movie.txt') == results.bee
-        assert cat("tests/multiple_blocks_cat.img", 'diri/shrek.txt') == results.shrek
+    def test_cat_multiple_block(self):
+        assert cat(test_folder + "/multiple_blocks_cat.img", 'bee_movie.txt') == results.bee
+        assert cat(test_folder + "/multiple_blocks_cat.img", 'diri/shrek.txt') == results.shrek
 
 class TestTouch():
     def test_touch(self):

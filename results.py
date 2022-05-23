@@ -15,3 +15,9 @@ bee = b'According to all known laws\nof aviation,\n\n\nthere is no way a bee\nsh
 touch_result = b".\n..\nfile0.txt\nhello.py\n"
 
 mkdir_result = b".\n..\ndiro\ndiri\n"
+
+removed_result = b'this should be read\n\n'
+
+append_in = b'\n\ngeneral kenobi\n'
+
+append_out = b'hello there\n\n\ngeneral kenobi\n'

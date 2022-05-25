@@ -23,7 +23,7 @@ class TestLs():
         assert ls(test_folder + "/multiple_block_ls.img") == results.multiple_block_ls_result
 
     def test_ls_single_block_30_char(self):
-        assert ls(test_folder + "/single_block_30_ls.img") == results.single_block_ls_result
+        assert ls(test_folder + "/single_block_30_ls.img") == results.single_block_ls_result or ls(test_folder + "/single_block_30_ls.img") == results.single_block_ls_result_2
 
     def test_ls_multiple_blocks_30_char(self):
         assert ls(test_folder + "/multiple_block_30_ls.img") == results.multiple_block_30_ls_result

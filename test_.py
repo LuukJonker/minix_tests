@@ -96,10 +96,11 @@ def mkdir():
 
     return ls('/tmp/mkdir.img')
 
-def append(file, content, num=1):
+def append(file, content, times=1):
     subprocess.run(['cp', test_path + file, '/tmp/' + file])
 
-    subprocess.run(['python3', program_path, '/tmp/' + file, 'append', "file.txt", content])
+    for _ in range(times):
+        subprocess.run(['python3', program_path, '/tmp/' + file, 'append', "file.txt", content])
 
     subprocess.run(['sudo', 'mount', '-o', 'loop', '/tmp/' + file, '/mnt'])
 

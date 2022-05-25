@@ -13,10 +13,11 @@ ls_working = False
 class TestLs():
     def test_ls_single_block_14_char(self):
         global ls_working
-        if ls(test_folder + "/single_block_ls.img") == results.single_block_ls_result:
+        res = ls(test_folder + "/single_block_ls.img") == results.single_block_ls_result or ls(test_folder + "/single_block_ls.img") == results.single_block_ls_result_2
+        if res:
             ls_working = True
 
-        assert ls(test_folder + "/single_block_ls.img") == results.single_block_ls_result
+        assert res
 
     def test_ls_multiple_blocks_14_char(self):
         assert ls(test_folder + "/multiple_block_ls.img") == results.multiple_block_ls_result

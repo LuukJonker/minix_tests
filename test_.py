@@ -13,11 +13,10 @@ ls_working = False
 class TestLs():
     def test_ls_single_block_14_char(self):
         global ls_working
-        res = ls(test_folder + "/single_block_ls.img") == results.single_block_ls_result
-        if res:
+        if ls(test_folder + "/single_block_ls.img") == results.single_block_ls_result:
             ls_working = True
 
-        assert res
+        assert ls(test_folder + "/single_block_ls.img") == results.single_block_ls_result
 
     def test_ls_multiple_blocks_14_char(self):
         assert ls(test_folder + "/multiple_block_ls.img") == results.multiple_block_ls_result
@@ -27,6 +26,9 @@ class TestLs():
 
     def test_ls_multiple_blocks_30_char(self):
         assert ls(test_folder + "/multiple_block_30_ls.img") == results.multiple_block_30_ls_result
+
+    def test_ls_split(self):
+        assert ls(test_folder + "/ls_split.img") == results.multiple_block_ls_result
 
 class TestCat():
     def test_cat_single_block(self):
@@ -61,7 +63,7 @@ class TestAppend():
         assert append('append_bigboy.img', read_file('shrek.txt')) == read_file('shrek.txt')
 
     def test_append_big(self):
-        assert append('append_bigboy.img', read_file('shrek.txt')) == read_file('shrek.txt')
+        assert append('append_bigboy.img', read_file('shrek.txt'), num=30) == read_file('shrek.txt')
 
 def read_file(file):
     with open(test_path + file, 'rb') as f:
@@ -94,7 +96,7 @@ def mkdir():
 
     return ls('/tmp/mkdir.img')
 
-def append(file, content):
+def append(file, content, num=1):
     subprocess.run(['cp', test_path + file, '/tmp/' + file])
 
     subprocess.run(['python3', program_path, '/tmp/' + file, 'append', "file.txt", content])
